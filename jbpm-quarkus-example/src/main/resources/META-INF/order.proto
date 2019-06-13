@@ -1,0 +1,32 @@
+package quickstart;
+
+message Order {
+    required string orderNumber = 1;
+    required bool shipped = 2;
+    optional double total = 3;
+}
+
+message OrderProcessLog {
+    required Order order = 1;
+    optional string approver = 2;
+    required ProcessInstanceLog process = 3;
+}
+
+message ProcessInstanceLog {
+    required int32 status = 1;
+    required int64 processInstanceId = 2;
+    required string processId = 3;
+    required int64 start = 4;
+    optional int64 end = 5;
+    repeated NodeInstanceLog nodes = 6;
+}
+
+message NodeInstanceLog {
+//    required int32 type = 1;
+    required string nodeInstanceId = 1;
+//    required int64 date = 3;
+    required int64 enter = 2;
+    optional int64 exit = 3;
+    required string nodeName = 4;
+    required string nodeType = 5;
+}

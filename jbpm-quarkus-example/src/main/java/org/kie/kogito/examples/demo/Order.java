@@ -45,9 +45,13 @@ public class Order implements java.io.Serializable {
 		this.shipped = shipped;
 		this.total = total;
 	}
-	
-	public String toString() {
-	    return "Order[" + this.orderNumber + "]";
-	}
 
+	@Override
+	public String toString() {
+		return "Order{" +
+				"orderNumber='" + orderNumber + '\'' +
+				", shipped=" + shipped +
+				", total=" + total +
+				'}';
+	}
 }

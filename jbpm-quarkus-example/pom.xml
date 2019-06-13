@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
-  xmlns="http://maven.apache.org/POM/4.0.0"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <modelVersion>4.0.0</modelVersion>
-
   <parent>
     <groupId>org.kie.kogito</groupId>
     <artifactId>kogito-examples</artifactId>
@@ -12,10 +9,8 @@
   </parent>
   <groupId>org.kie.kogito.examples</groupId>
   <artifactId>jbpm-quarkus-example</artifactId>
-
   <name>jBPM example running on Quarkus</name>
   <description>Order management service</description>
-
   <dependencyManagement>
     <dependencies>
       <dependency>
@@ -27,13 +22,11 @@
       </dependency>
     </dependencies>
   </dependencyManagement>
-
   <dependencies>
     <dependency>
       <groupId>io.quarkus</groupId>
       <artifactId>quarkus-resteasy-jsonb</artifactId>
     </dependency>
-
     <dependency>
       <groupId>org.kie.kogito</groupId>
       <artifactId>kogito-api</artifactId>
@@ -63,6 +56,10 @@
       <artifactId>quarkus-junit5</artifactId>
       <scope>test</scope>
     </dependency>
+    <dependency>
+      <groupId>io.quarkus</groupId>
+      <artifactId>quarkus-infinispan-client</artifactId>
+    </dependency>
   </dependencies>
   <build>
     <plugins>
@@ -85,6 +82,14 @@
       <plugin>
         <groupId>io.openapitools.swagger</groupId>
         <artifactId>swagger-maven-plugin</artifactId>
+        <executions>
+          <execution>
+            <phase>compile</phase>
+            <goals>
+              <goal>generate</goal>
+            </goals>
+          </execution>
+        </executions>
         <configuration>
           <resourcePackages>
             <resourcePackage>org.kie.kogito.examples</resourcePackage>
@@ -100,6 +105,7 @@
             </info>
           </swaggerConfig>
         </configuration>
+<<<<<<< HEAD
         <executions>
           <execution>
             <goals>
@@ -107,6 +113,8 @@
             </goals>
           </execution>
         </executions>
+=======
+>>>>>>> Infinispan tests
       </plugin>
     </plugins>
   </build>
@@ -125,7 +133,6 @@
             <artifactId>quarkus-maven-plugin</artifactId>
           </plugin>
           <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-failsafe-plugin</artifactId>
           </plugin>
         </plugins>
