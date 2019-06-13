@@ -42,6 +42,7 @@ public class DefaultAuditEventBuilderImpl implements AuditEventBuilder {
     public AuditEvent buildEvent(ProcessStartedEvent pse) {
         ProcessInstanceImpl pi = (ProcessInstanceImpl) pse.getProcessInstance();
         ProcessInstanceLog log = new ProcessInstanceLog(pi.getId(), pi.getProcessId());
+//        log.setId(pi.getId());
 //        log.setExternalId(""+((KieSession) pse.getKieRuntime()).getIdentifier());
         log.setProcessName(pi.getProcess().getName());
         log.setProcessVersion(pi.getProcess().getVersion());

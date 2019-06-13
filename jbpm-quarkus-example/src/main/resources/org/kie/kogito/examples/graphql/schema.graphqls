@@ -1,0 +1,11 @@
+schema {
+  query: Query
+}
+
+type OrderProcessLog {
+  approver: String!
+}
+
+type Query {
+  all: [OrderProcessLog]
+}

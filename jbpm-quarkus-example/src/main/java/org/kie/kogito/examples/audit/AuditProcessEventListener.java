@@ -73,25 +73,21 @@ public class AuditProcessEventListener extends DefaultProcessEventListener {
 
     @Override
     public void beforeNodeTriggered(ProcessNodeTriggeredEvent event) {
+        System.out.println("beforeNodeTriggered = " + event);
         NodeInstanceLog log = (NodeInstanceLog) builder.buildEvent(event);
         addNodeInstanceLog(event.getProcessInstance().getId(), log);
         ((NodeInstanceImpl) event.getNodeInstance()).getMetaData().put("NodeInstanceLog", log);
     }
 
     @Override
-    public void afterNodeTriggered(ProcessNodeTriggeredEvent event) {
-        NodeInstanceLog log = (NodeInstanceLog) ((NodeInstanceImpl) event.getNodeInstance()).getMetaData().get("NodeInstanceLog");
-        builder.buildEvent(event, log);
-    }
-
-    @Override
     public void beforeNodeLeft(ProcessNodeLeftEvent event) {
+        System.out.println("\n\n\nbeforeNodeLeft exit = " + event);
         Long pId = event.getProcessInstance().getId();
         OrderProcessLog orderProcessLog = auditCache.get(pId);
         if (orderProcessLog != null) {
-            String nodeId = Long.toString(event.getNodeInstance().getNodeId());
+            NodeInstanceLog log = (NodeInstanceLog) ((NodeInstanceImpl) event.getNodeInstance()).getMetaData().get("NodeInstanceLog");
+            String nodeId = log.getNodeInstanceId();
             orderProcessLog.getProcess().getNodes().stream().filter(node -> node.getNodeInstanceId().equals(nodeId)).forEach(node -> builder.buildEvent(event, node));
-            System.out.println("Override = " + orderProcessLog);
             auditCache.replaceAsync(pId, orderProcessLog);
         }
     }
@@ -100,7 +96,6 @@ public class AuditProcessEventListener extends DefaultProcessEventListener {
         final OrderProcessLog orderProcessLog = auditCache.get(pId);
         if (orderProcessLog != null) {
             orderProcessLog.getProcess().getNodes().add(log);
-            System.out.println("add node instance log = " + log);
             auditCache.replaceAsync(pId, orderProcessLog);
         }
     }

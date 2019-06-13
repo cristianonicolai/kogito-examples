@@ -10,6 +10,8 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import com.coxautodev.graphql.tools.GraphQLRootResolver;
+import io.leangen.graphql.annotations.GraphQLQuery;
 import io.quarkus.infinispan.client.runtime.Remote;
 import org.infinispan.client.hotrod.RemoteCache;
 import org.infinispan.client.hotrod.Search;
@@ -30,6 +32,7 @@ public class OrderStoreService {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
+    @GraphQLQuery
     public List<OrderProcessLog> searchAll() {
         QueryFactory queryFactory = Search.getQueryFactory(auditCache);
         return queryFactory.from(OrderProcessLog.class).build().list();
