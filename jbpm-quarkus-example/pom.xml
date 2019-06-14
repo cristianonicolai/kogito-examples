@@ -130,16 +130,6 @@
             </info>
           </swaggerConfig>
         </configuration>
-<<<<<<< HEAD
-        <executions>
-          <execution>
-            <goals>
-              <goal>generate</goal>
-            </goals>
-          </execution>
-        </executions>
-=======
->>>>>>> Infinispan tests
       </plugin>
     </plugins>
   </build>

@@ -1,6 +1,5 @@
 package org.kie.kogito.examples;
 
-import javax.annotation.Priority;
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.event.Observes;
 import javax.inject.Inject;
@@ -14,7 +13,7 @@ public class InitCache {
     @Inject
     RemoteCacheManager cacheManager;
 
-    protected void onStart(@Observes @Priority(value = 1) StartupEvent ev) {
+    protected void onStart(@Observes StartupEvent ev) {
         System.out.println("on start");
         initCache("orders");
         initCache("audit");
